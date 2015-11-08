@@ -1,0 +1,45 @@
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/google-apis/google-youtube-api.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../elements/youchoose-cards/channel-card.html">
+<link rel="import" href="../elements/youchoose-data/subscriptions-data.html">
+
+
+
+<dom-module id="subscriptions-list">
+
+	<style>
+		:host {
+			display: block;
+			box-sizing: border-box;
+		}
+
+	</style>
+
+	<template is="dom-bind">
+		<subscriptions-data value={{response}}></subscriptions-data>
+		<iron-list items="{{response}}" as="item"> 
+      		<template is="dom-repeat" items="{{item.items}}" as="channel">
+		        <channel-card 
+		        	channelIcon=[[channel.thumbnails.default.url]]
+		        	channelName=[[channel.snippet.title]]
+		        	channelImage=[[channel.thumbnails.high.url]]
+		        ></channel-card>
+	      </template>
+	    </iron-list>
+	  </template>
+	
+
+	<script>
+		(function () {
+			Polymer({
+				is: 'subscriptions-list',
+				properties: {
+
+				}
+			});
+		})();
+	</script>
+
+</dom-module>

@@ -1,0 +1,39 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+
+<dom-module id="subscriptions-data">
+
+  <template is="dom-bind">
+
+    <iron-ajax
+    auto
+    url="https://www.googleapis.com/youtube/v37/subscriptions"
+    params='{"part":"snippet", "mine":"true", "key":[[myKey]] }'
+    handle-as="json"
+    latest-response={{response}}
+    debounce-duration="300"
+    >
+    </iron-ajax>
+
+    
+  </template>
+  <script>
+    Polymer({
+      is: 'subscriptions-data',
+      properties: {
+        myKey: {
+          type: String,
+          value: "AIzaSyDgsvYtLz-BuMYSLt_Zzhde5W9Kl1BnbLA"
+        },
+        channels: {
+          notify: true,
+          value: function(){
+            return {{response}};
+          }
+        }
+        
+        }
+    });
+  </script>
+</dom-module>

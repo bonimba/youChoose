@@ -1,0 +1,87 @@
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+
+<dom-module id="channel-card">
+
+	<style>
+		:host {
+			display: block;
+			box-sizing: border-box;
+			margin: 2%;
+			width: 96%;
+			@apply(--layout-vertical);
+		}
+
+			#card-header{
+				@apply(--layout-horizontal);
+				padding: 1%;
+			}
+			#channel-icon{
+				@apply(--layout-start);
+				padding-right: 1%;
+			}
+			#channel-name{
+				@apply(--layout-flex);
+			}
+		.card-content{
+			@apply(--layout-flex);  
+		}
+
+		paper-material{
+			border-radius: 50%; 
+		}
+		paper-material img{
+			border-radius: 50%; 
+		}
+	</style>
+
+	<template>
+		<iron-flex-layout>
+			 <paper-card elevation="2">
+				<div id="card-header">
+					<paper-material elevetion="1">
+						<img src=[[channelIcon]]>
+					</paper-material>
+					<div id="channel-name">
+						<label>[[channelName]]</label>
+					</div>
+					<div id="menu-icon">
+						<a><iron-icon icon="icons:more-vert"></iron-icon></a> 
+					</div>
+				</div>
+				<div class="card-content">
+					<img src=[[channelImage]] />
+				</div>
+			</paper-card>
+		</iron-flex-layout>
+	</template>
+
+	<script>
+		(function () {
+			Polymer({
+				is: 'channel-card',
+				properties: {
+					channelIcon: {
+						type: String,
+						value: "https://yt3.ggpht.com/-RQz4fnGYYAc/AAAAAAAAAAI/AAAAAAAAAAA/GqV-ppPCHbE/s88-c-k-no/photo.jpg"
+					},
+					channelName: {
+						type: String,
+						value: "youChoose"
+					},
+					channelImage: {
+						type: String,
+						value: "https://yt3.ggpht.com/-RQz4fnGYYAc/AAAAAAAAAAI/AAAAAAAAAAA/GqV-ppPCHbE/s88-c-k-no/photo.jpg"
+					}
+				},
+				ready: function() {
+					
+				}
+			});
+		})();
+	</script>
+
+</dom-module>

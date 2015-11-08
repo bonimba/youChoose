@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/google-apis/google-youtube-api.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../elements/youchoose-cards/video-card.html">
+<link rel="import" href="../elements/youchoose-data/video-card.html">
+
+
+
+<dom-module id="video-list">
+
+	<style>
+		:host {
+			display: block;
+			box-sizing: border-box;
+		}
+
+	</style>
+
+	<google-youtube-api></google-youtube-api>
+
+	<iron-list items="[[data]]" as="item">
+	  <template>
+	    <div> 
+	      <template is="dom-repeat" items="[[item.columns]]">
+	        <video-card
+	        	video-id=[[item.]]
+				videoTitle=[[item.]]
+				videoViews=[[item.]]
+				videoLikes=[[item.]]
+				videoTime=[[item.]]
+				videoUnlikes=[[item.]]
+				videoShares=[[item.]]
+				channelIcon=[[item.]]
+				channelName=[[item.]]
+	        >
+
+	        </video-card>
+	      </template>
+	    </div>
+	  </template>
+	</iron-list>
+
+	<script>
+		(function () {
+			Polymer({
+				is: 'video-list',
+				
+				ready: function() {
+					this.video = [];					;
+				}
+			});
+		})();
+	</script>
+
+</dom-module>
