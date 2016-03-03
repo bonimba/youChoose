@@ -49,6 +49,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
+  <script src="filter-replace.js"></script>
+  <script src="filter-titlecase.js"></script>
+
 
   <!-- will be replaced with elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
@@ -60,13 +63,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template is="dom-bind" id="app">
 
     <auth-data id="auth"
-               user="{{user}}"
-               location="[[firebaseURL]]"
-               user="{{user}}"></auth-data>
+               user={{user}}
+               location="[[firebaseURL]]"></auth-data>
 
-    <firebase-data location="[[firebaseURL]]"
-                   youChoose="{{todos}}"
-                   user="{{user}}"></firebase-data>
+    <firebase-data location=[[firebaseURL]]
+                   data={{todos}} 
+                   user={{user}}></firebase-data> <!-- FIXME data={{todos}} is wrong -->
 
     <paper-drawer-panel id="paperDrawerPanel">
       <!-- Drawer Scroll Header Panel -->
@@ -74,23 +76,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <!-- Drawer Toolbar -->
         <paper-toolbar id="drawerToolbar" class="medium-tall">
-          <paper-icon-button icon="account-circle"></paper-icon-button>
-          <!-- <div class="avatar green" item-icon></div>  -->  
+          <!-- <paper-icon-button icon="account-circle"></paper-icon-button>
+           <div class="avatar green" item-icon></div>  -->  
           
-            <paper-item class="bottom">
+            <!-- <paper-item class="bottom">
               <paper-item-body two-line>
                 <div primary><strong>Username</strong></div>
                 <div secondary>email</div>
               </paper-item-body>
-            </paper-item>
-            <!-- <iron-image id="coverimage" placeholder="images/polygon.jpg"
-                        src="[[user.cover]]"
-                        sizing="cover" preload fade class="fit"></iron-image>
-            <img class="middle profile" src$="{{user.profile}}" hidden="{{!user.profile}}">
-            <div class="bottom layout vertical">
-              <span>{{user.name}}</span>
-              <span>{{user.email}}</span>
-            </div>    -->
+            </paper-item> -->
+            <user-card username={{user.name || name}}
+                       email={{user.email || email}}
+                       coverImage={{user.cover}}
+                       profileImage={{user.profile}} >
+            </user-card>  
         </paper-toolbar>
 
         <!-- Drawer Content -->
@@ -141,28 +140,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <!-- Main Content -->
         <div class="content">
           <iron-pages attr-for-selected="data-route" selected="{{route}}">
-            <section route="login" >
-                  <div id="loginscreen" class="layout vertical center-center fit"
-                     class="{{ {show: !isAuthenticated} | tokenList }}">
-                  <!-- <div>
-                    <img style="padding:20px;" src="images/gmail.png" width="150" ></img>
-                    <img style="padding:20px;" src="images/polymer.svg" width="150"></img> 
-                  </div> -->
-                  <div style="padding:20px;font-size:20px;">
-                    youChoose: your channels in a tap 
-                  </div>
-
-                  <google-signin width="wide" height="tall"
-                      client-id=""  
-                      scopes="https://www.googleapis.com/auth/youtube"
-                      on-google-signin-success="onSigninSuccess"
-                      on-google-signin-failure="onSigninFailure">
-                  </google-signin>
-                  </div> <!-- FIXME -->
-              </section>
+            
             <section data-route="watch-now" id="watchNowSection">
                   <paper-tabs selected="{{selected}}" horizontal center layout >
-                      <paper-tab inline flex center-center horizontal layout active>Highlights</paper-tab>
+                      <paper-tab inline flex center-center horizontal layout active>
+                        Highlights
+                      </paper-tab>
                       <paper-tab inline flex center-center horizontal layout>youChoose</paper-tab>
                       <paper-tab inline flex center-center horizontal layout>#CuteKittens</paper-tab>
                   </paper-tabs>
@@ -170,8 +153,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <iron-pages selected="{{selected}}">
                   <div id="highlights">
                     <video-card
-                        video-id="TXv2jIfF7es"
-                    ></video-card>
+                        video-id="TXv2jIfF7es"></video-card>
                   </div>
                 
                   <div id="youChoose">youChoose Channel</div>
@@ -180,13 +162,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </section>
 
             <section data-route="my-subscriptions" id="mySubscriptionsSection">
-                <paper-tabs selected="{{selected2}}" horizontal center layout>
+                <paper-tabs selected="{{selected}}" horizontal center layout>
                       <paper-tab inline flex center-center horizontal layout>Channels</paper-tab>
                       <paper-tab inline flex center-center horizontal layout>#Searches</paper-tab>
                       <paper-tab inline flex center-center horizontal layout>Tabs</paper-tab>
                 </paper-tabs>
 
-                <iron-pages selected="{{selected2}}">
+                <iron-pages selected="{{selected}}">
                   <div id="channels">
                    <channel-card></channel-card>
 

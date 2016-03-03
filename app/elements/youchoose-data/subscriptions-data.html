@@ -3,21 +3,19 @@
 
 
 <dom-module id="subscriptions-data">
+    <template is="dom-bind">
 
-  <template is="dom-bind">
+      <iron-ajax
+      auto
+      url="https://www.googleapis.com/youtube/v37/subscriptions"
+      params='{"part":"snippet", "mine":"true", "key":[[myKey]] }'
+      handle-as="json"
+      latest-response={{response}}
+      >
+      </iron-ajax>
+   
+</template>  
 
-    <iron-ajax
-    auto
-    url="https://www.googleapis.com/youtube/v37/subscriptions"
-    params='{"part":"snippet", "mine":"true", "key":[[myKey]] }'
-    handle-as="json"
-    latest-response={{response}}
-    debounce-duration="300"
-    >
-    </iron-ajax>
-
-    
-  </template>
   <script>
     Polymer({
       is: 'subscriptions-data',

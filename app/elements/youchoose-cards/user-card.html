@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/iron-image/iron-image.html">
+
+<dom-module id="user-card">
+
+	<style>
+		:host {
+			display: block;
+			box-sizing: border-box;
+			
+		}
+
+			
+	</style>
+
+	<template is="dom-bind">
+		<iron-image id="coverimage" placeholder="images/polygon.jpg"
+                        src=[[coverImage]]
+                        sizing="cover" preload fade class="fit"></iron-image>
+            <img class="middle profile" src={{profileImage}} hidden={{!profileImage}}>
+            <div class="bottom layout vertical">
+              <span>{{username}}</span>
+              <span>{{email}}</span>
+            </div> 
+	</template>
+
+	<script>
+		(function () {
+			Polymer({
+				is: 'user-card',
+				properties: {
+					username: {
+						type: String,
+						value:"Marco Boninsegni"
+					},
+					email: {
+						type: String,
+						value: "k1450956@kingston.ac.uk"
+					},
+					coverImage: {
+						type: String,
+						value: "url"
+					},
+					profileImage: {
+						type: String,
+						value: "url"
+					}
+				},
+				ready: function() {
+					
+				}
+			});
+		})();
+	</script>
+
+</dom-module>

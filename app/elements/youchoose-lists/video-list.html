@@ -2,9 +2,7 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/google-apis/google-youtube-api.html">
 <link rel="import" href="../../bower_components/iron-list/iron-list.html">
-<link rel="import" href="../elements/youchoose-cards/video-card.html">
-<link rel="import" href="../elements/youchoose-data/video-card.html">
-
+<link rel="import" href="../youchoose-cards/video-card.html">
 
 
 <dom-module id="video-list">
@@ -20,7 +18,7 @@
 	<google-youtube-api></google-youtube-api>
 
 	<iron-list items="[[data]]" as="item">
-	  <template>
+	  <template is="dom-bind">
 	    <div> 
 	      <template is="dom-repeat" items="[[item.columns]]">
 	        <video-card
