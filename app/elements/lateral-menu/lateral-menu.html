@@ -1,0 +1,38 @@
+<dom-element is="lateral-menu">
+<template>
+	<paper-menu class="list" 
+                    attr-for-selected="data-route" 
+                    selected="{{route}}" 
+                    on-iron-select="onMenuSelect">
+          <paper-item data-route="watch-now" href="/" role="menuitem">
+            <iron-icon icon="home"></iron-icon>
+            <span>Watch Now</span>
+          </paper-item>
+          
+
+          <paper-item data-route="my-subscriptions" href="/my-subscriptions" role="menuitem">
+            <iron-icon icon="av:video-library"></iron-icon>
+            <span>My Subscriptions</span>
+          </paper-item>
+
+          <paper-item data-route="explore" href="/explore" role="menuitem">
+            <iron-icon icon="explore"></iron-icon>
+            <span>Explore</span>
+          </paper-item>
+
+          <hr>
+
+          <paper-item data-route="settings" href="/settings" role="menuitem">
+            <iron-icon icon="settings"></iron-icon>
+            <span>Settings</span>
+          </paper-item>
+        </paper-menu>
+</template>
+
+</dom-element>	
+
+<script>
+	Polymer({
+		is: 'lateral-menu'
+	});
+</script>

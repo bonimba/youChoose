@@ -66,7 +66,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                user={{user}}
                location="[[firebaseURL]]"></auth-data>
 
-    <firebase-data location=[[firebaseURL]]
+    <!-- <firebase-data location=[[firebaseURL]]
                    data={{todos}} 
                    user={{user}}></firebase-data> <!-- FIXME data={{todos}} is wrong -->
 
@@ -93,7 +93,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </paper-toolbar>
 
         <!-- Drawer Content -->
-        <paper-menu class="list" attr-for-selected="data-route" selected="{{route}}" on-iron-select="onMenuSelect">
+        <paper-menu class="list" 
+                    attr-for-selected="data-route" 
+                    selected="{{route}}" 
+                    on-iron-select="onMenuSelect">
           <paper-item data-route="watch-now" href="/" role="menuitem">
             <iron-icon icon="home"></iron-icon>
             <span>Watch Now</span>
@@ -127,7 +130,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-toolbar id="mainToolbar">
           <paper-icon-button id="paperToggle" icon="menu" paper-drawer-toggle></paper-icon-button>
           <div class="top-container horizontal layout">
-            <div class="paper-font-title app-name">{{route}}</div>
+            <div class="paper-font-title app-name">
+              <iron-pages attr-for-selected="data-route" selected="{{route}}">
+                <section data-route="watch-now">
+                  Watch Now
+                </section>
+                <section data-route="my-subscriptions">
+                   My Subscriptions
+                </section>
+                <section data-route="explore">
+                  Explore
+                </section>
+                <section data-route="settings">
+                  Settings
+                </section>
+              </iron-pages>
+            </div>
           </div>
           <span class="flex"></span>
 
